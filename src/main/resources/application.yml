@@ -1,0 +1,5 @@
+external:
+  host:
+    github: https://api.github.com
+  api:
+    github: ${external.host.github}/repos

@@ -37,6 +37,17 @@ Feign 은 Netflix 에서 개발된 Http client binder 입니다.
   - root package 에 있어야 하며, 그렇지 않은 경우 basePackages 또는 basePackageClasses 를 지정해주셔야 합니다.
 - @EnableFeignClients 은 지정된 package 를 돌아다니면서 @FeignClient 를 찾아 구현체를 만들어 줍니다.
 
+**3. Client 작성하기**
+  ```java
+  @FeignClient(
+        name = "github-client",
+        url = "${external.api.github}"
+  )
+  public interface GithubFeignClient {
+      @GetMapping("/{owner}/{repo}/contributors")
+      List<Contributor> getContributor(@PathVariable("owner") String owner, @PathVariable("repo") String repo);
+  }
+  ```
 
 
 ### 참고
