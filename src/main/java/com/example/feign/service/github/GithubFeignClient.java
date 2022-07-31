@@ -1,5 +1,6 @@
 package com.example.feign.service.github;
 
+import com.example.feign.config.FeignClientConfig;
 import com.example.feign.dto.Contributor;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +10,8 @@ import java.util.List;
 
 @FeignClient(
         name = "github-client",
-        url = "${external.api.github}"
+        url = "${external.api.github}",
+        configuration = {FeignClientConfig.class}
 )
 public interface GithubFeignClient {
     @GetMapping("/{owner}/{repo}/contributors")

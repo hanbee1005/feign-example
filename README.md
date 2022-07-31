@@ -54,6 +54,37 @@ Feign 은 Netflix 에서 개발된 Http client binder 입니다.
 - Spring 을 사용하는 환경이라면, org.springframework.cloud.openfeign.FeignClientsConfiguration 에서 어떤 Bean 이 만들어지는지 보면 됩니다.
 
 **5. 추가 config 작성하기**
+- Configuration 파일을 생성하고 추가 설정을 해줍니다.
+  - Header 추가하기
+    ```java
+    public class FeignClientConfig {
+        @Bean
+        public RequestIntercepter requestInterceptor() {
+          return template -> template.header("headerName", "headerValue1", "headerValue2");
+        }
+    }
+    ```
+  - BasicAuth 인증하기
+    ```java
+    public class FeignClientConfig {
+        @Bean
+        public BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
+          return new BasicAuthRequestInterceptor("mayaul", "1234567890");
+        }
+    }
+    ```
+- 이후 @FeignClient 에 configuration 을 지정합니다.
+    ```java
+    @FeignClient(
+          name = "github-client",
+          url = "${external.api.github}",
+          configuration = {FeignClientConfig.class}
+    )
+    public interface GithubFeignClient {
+        @GetMapping("/{owner}/{repo}/contributors")
+        List<Contributor> getContributor(@PathVariable("owner") String owner, @PathVariable("repo") String repo);
+    }
+    ```
 
 ### 참고
 - [우아한 형제들 블로그](https://techblog.woowahan.com/2630/)
