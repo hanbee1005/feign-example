@@ -1,5 +1,5 @@
 # Feign Client 적용 예제 프로젝트
-Netflix
+Feign 은 Netflix 에서 개발된 Http client binder 입니다. 
 
 ### Guides
 1. Gradle 의존성 추가
@@ -20,6 +20,8 @@ Netflix
         }
     }
     ```
+   - springCloudVersion 의 경우 spring boot 버전에 맞는 버전을 사용을 하셔야 합니다.
+   - https://spring.io/projects/spring-cloud 로 이동하셔서 사용하시는 spring boot 버전에 맞는 버전을 사용해주세요.
 2. 
 
 ### 참고
