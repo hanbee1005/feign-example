@@ -2,7 +2,7 @@
 Feign 은 Netflix 에서 개발된 Http client binder 입니다. 
 
 ### Guides
-1. Gradle 의존성 추가
+**1. Gradle 의존성 추가**
    ```
     ext {
         set('springCloudVersion', "2021.0.3")
@@ -19,10 +19,25 @@ Feign 은 Netflix 에서 개발된 Http client binder 입니다.
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
         }
     }
-    ```
+   ```
    - springCloudVersion 의 경우 spring boot 버전에 맞는 버전을 사용을 하셔야 합니다.
    - https://spring.io/projects/spring-cloud 로 이동하셔서 사용하시는 spring boot 버전에 맞는 버전을 사용해주세요.
-2. 
+
+**2. @EnableFeignClients 추가**
+   ```java
+   @SpringBootApplication
+   @EnableFeignClients
+   public class FeignApplication {
+       public static void main(String[] args) {
+           SpringApplication.run(FeignApplication.class, args);
+       }
+   }
+   ```
+- @EnableFeignClients 을 사용하셔야합니다.
+  - root package 에 있어야 하며, 그렇지 않은 경우 basePackages 또는 basePackageClasses 를 지정해주셔야 합니다.
+- @EnableFeignClients 은 지정된 package 를 돌아다니면서 @FeignClient 를 찾아 구현체를 만들어 줍니다.
+
+
 
 ### 참고
 - [우아한 형제들 블로그](https://techblog.woowahan.com/2630/)
