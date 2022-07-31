@@ -49,6 +49,11 @@ Feign 은 Netflix 에서 개발된 Http client binder 입니다.
   }
   ```
 
+**4. controller, service 구현 후 API 호출**
+- feign 를 하다보면, 기본으로 설정되는 bean 들이 있습니다. ***Logger, Decoder, Encoder, Contract***
+- Spring 을 사용하는 환경이라면, org.springframework.cloud.openfeign.FeignClientsConfiguration 에서 어떤 Bean 이 만들어지는지 보면 됩니다.
+
+**5. 추가 config 작성하기**
 
 ### 참고
 - [우아한 형제들 블로그](https://techblog.woowahan.com/2630/)
